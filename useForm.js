@@ -20,12 +20,12 @@ const useForm = (callback, validate) => {
       [name]: value,
     });
   };
- const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setErrors(validate(values));
     setIsSubmitting(true);
     var account = [];
-    var storage = [values];
+    var storage = values;
     account.push(storage);
     var Final =
       localStorage.getItem("account") != undefined
