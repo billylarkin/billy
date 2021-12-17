@@ -20,22 +20,18 @@ const useForm = (callback, validate) => {
       [name]: value,
     });
   };
-  const handleSubmit = (e) => {
+ const handleSubmit = (e) => {
     e.preventDefault();
     setErrors(validate(values));
     setIsSubmitting(true);
-    if (localStorage.getItem("account") === null) {
-      console.log("hello");
-    } else {
-      var account = localStorage.getItem("account");
-      console.log(account);
-    }
-    const storage = [values];
-    account = account ? account.split(",") : [];
-    storage.push(account);
-
-    // account.push(storage);
-    localStorage.setItem("account", JSON.stringify(storage));
+    var account = [];
+    var storage = [values];
+    account.push(storage);
+    var Final =
+      localStorage.getItem("account") != undefined
+        ? [...account, ...JSON.parse(localStorage.getItem("account"))]
+        : account;
+    localStorage.setItem("account", JSON.stringify(Final));
   };
   useEffect(() => {
     if (Object.keys(errors).length === 0 && isSubmitting) {
